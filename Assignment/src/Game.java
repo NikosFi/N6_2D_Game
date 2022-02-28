@@ -1,12 +1,9 @@
 
+import game2D.*;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-
-import java.awt.*;
-
-
-import game2D.*;
 
 // Game demonstrates how we can override the GameCore class
 // to create our own 'game'. We usually need to implement at
@@ -36,6 +33,14 @@ public class Game extends GameCore
 
     // Game resources
     Animation landing;
+    Animation attack1;
+    Animation attack2;
+    Animation jump;
+    Animation fall;
+    Animation idle;
+    Animation run;
+    Animation takeHit;
+    Animation death;
     
     Sprite	player = null;
     ArrayList<Sprite> clouds = new ArrayList<Sprite>();
@@ -75,10 +80,16 @@ public class Game extends GameCore
 
         // Create a set of background sprites that we can 
         // rearrange to give the illusion of motion
-        
         landing = new Animation();
-        landing.loadAnimationFromSheet("images/landbird.png", 4, 1, 60);
-        
+        landing.loadAnimationFromSheet("images/Run.png", 8, 1, 200);
+        attack1 = new Animation();
+        attack2 = new Animation();
+        jump =new Animation();
+        fall = new Animation();
+        run = new Animation();
+        takeHit = new Animation();
+
+
         // Initialise the player with an animation
         player = new Sprite(landing);
         
@@ -112,7 +123,7 @@ public class Game extends GameCore
     {
     	total = 0;
     	      
-        player.setX(64);
+        player.setX(40);
         player.setY(200);
         player.setVelocityX(0);
         player.setVelocityY(0);
@@ -222,7 +233,11 @@ public class Game extends GameCore
      *  @param e The event that has been generated
      */
     public void keyPressed(KeyEvent e) 
-    { 
+    {
+
+        //if(key == KeyEvent.VK_RIGHT){
+        // player.setAnimation(attack1);
+        //}
     	int key = e.getKeyCode();
     	
     	if (key == KeyEvent.VK_ESCAPE) stop();
@@ -302,7 +317,8 @@ public class Game extends GameCore
 		{
 			case KeyEvent.VK_ESCAPE : stop(); break;
 			case KeyEvent.VK_UP     : flap = false; break;
-			default :  break;
+            case KeyEvent.VK_LEFT: player.setAnimation(landing);player.setVelocityX(0);break;
+			default :  break;// pass landing here
 		}
 	}
 }
