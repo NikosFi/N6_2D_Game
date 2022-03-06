@@ -1,9 +1,7 @@
 package game2D;
 
 import javax.swing.ImageIcon;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.*;
@@ -40,7 +38,7 @@ public class TileMap
 
 	private Tile [][] tmap;		// The tile map grid, initially null
 	private int mapWidth=0;		// The maps width in tiles
-	private int mapHeight=0;	// The maps height in tiles
+	private int mapHeight=0 ;	// The maps height in tiles
 	private int tileWidth=0;	// The width of a tile in pixels
 	private int tileHeight=0;	// The height of a tile in pixels
 	
@@ -349,6 +347,8 @@ public class TileMap
 				if (xc+tileWidth < 0 || xc >= rect.x + rect.width) continue;
 				if (yc+tileHeight < 0 || yc >= rect.y + rect.height) continue;
 				g.drawImage(img,xc,yc,null);
+				g.setColor(Color.magenta);
+				g.drawRect(xc,yc,32,32);
 			}
 		}		
 	}
